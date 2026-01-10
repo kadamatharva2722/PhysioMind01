@@ -1,6 +1,6 @@
 // client/src/pages/LiveSessionPage.jsx
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/sidebar";
 import WebcamCapture from "../components/WebcamCapture";
 import { generateTodayPlanAPI } from "../services/api";
 import "../styles/dashboard.css";
