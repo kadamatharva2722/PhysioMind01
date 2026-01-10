@@ -1,0 +1,183 @@
+/* client/src/styles/profile.css */
+
+.profile-page {
+  padding: 32px 40px;
+}
+
+.profile-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* Card */
+.profile-card {
+  max-width: 1120px;
+  margin: 0 auto 24px auto;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+  padding: 24px 32px 28px;
+}
+
+/* Header row */
+.profile-header-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.profile-avatar-wrapper {
+  width: 88px;
+  height: 88px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-header-text {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-joined {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.profile-edit-icon-btn {
+  border: none;
+  background: #f3f4f6;
+  border-radius: 999px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Form grid */
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 20px;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.profile-input {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+/* Buttons */
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.profile-btn {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-btn-secondary {
+  background: #eef2ff;
+  color: #4b5563;
+}
+
+.profile-btn-primary {
+  background: #22c55e;
+  color: white;
+}
+
+.profile-btn-primary:hover {
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+}
+
+/* Reports card */
+.profile-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-section-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+.profile-report-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.profile-report-btn {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  border: none;
+  background: #f3f4f6;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.profile-report-btn:hover {
+  background: #e5e7eb;
+}
+
+.profile-card {
+  position: relative; /* for absolute pencil placement if you want */
+}
+
+/* existing but you can refine */
+.profile-edit-icon-btn {
+  border: none;
+  background: #f97316;
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 20px;
+  right: 24px;
+}
+
+.profile-edit-icon-btn:hover {
+  filter: brightness(1.05);
+}

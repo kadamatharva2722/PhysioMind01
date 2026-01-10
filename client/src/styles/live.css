@@ -1,0 +1,186 @@
+/* ===== LIVE SESSION LAYOUT ===== */
+
+.live-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.live-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* main grid (video + metrics) */
+.live-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/* big video card */
+.live-video-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+/* “LIVE” badge */
+.live-badge-live {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.live-badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #fecaca;
+}
+
+/* frame area (image / webcam) */
+.live-video-frame {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 380px;
+}
+
+.live-video-placeholder {
+  width: 100%;
+  height: 100%;
+  background-image: url("/Landing.png"); /* or your exercise image */
+  background-size: cover;
+  background-position: center;
+}
+
+/* big green start button */
+.live-start-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px 32px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  background: #16a34a;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(22, 163, 74, 0.35);
+  z-index: 3;
+}
+
+.live-start-btn:hover {
+  background: #15803d;
+  transform: translate(-50%, -52%);
+}
+
+.live-start-icon {
+  font-size: 18px;
+}
+
+/* right side metrics card */
+
+.live-metrics-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 20px 22px;
+  box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+}
+
+.live-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+}
+
+.live-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.live-metric-box {
+  border-radius: 16px;
+  background: #f9fafb;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.live-metric-label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.live-metric-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* bottom instructions card */
+
+.live-bottom-grid {
+  margin-top: 10px;
+}
+
+.live-instructions-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 20px 24px;
+  box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+}
+
+.live-exercise-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.live-instruction-list {
+  padding-left: 20px;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* small responsive tweak */
+@media (max-width: 1024px) {
+  .live-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .live-video-card {
+    order: 1;
+  }
+
+  .live-metrics-card {
+    order: 2;
+  }
+}

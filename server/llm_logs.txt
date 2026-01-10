@@ -1,0 +1,575 @@
+
+-----------------------------
+TIME: 2025-11-24T06:51:42.794Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 10
+Stage: down
+Angle: 42
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job on completing 10 bicep curls, now focus on lowering your arms to 42 degrees for the next rep."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T07:19:52.488Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 10
+Stage: up
+Angle: 165
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Excellent form, keep your elbows close to your body for the next rep."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T07:19:52.497Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 10
+Stage: up
+Angle: 156
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job on completing 10 reps, now focus on slow, controlled descent to 156 degrees."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T07:19:52.509Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 10
+Stage: up
+Angle: 163
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, 10 reps completed. Next, focus on lowering the dumbbell to 163 degrees, control the descent."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:49:31.299Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 1
+Stage: down
+Angle: 26
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job lowering your arm, now focus on slow, controlled movement to initiate the next curl."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:49:31.375Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 1
+Stage: down
+Angle: 43
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, bicep curl completed. Next, focus on lowering your arm to 43 degrees, control the descent."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:49:45.216Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 2
+Stage: down
+Angle: 40
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, now slowly lower your arms to the starting position, keeping elbows close to your body."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:50:02.095Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 3
+Stage: down
+Angle: 43
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, maintain a 43-degree angle and slowly lower the weight to complete the next rep."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:50:02.354Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 3
+Stage: down
+Angle: 37
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, keep your core engaged for the next movement, transition smoothly to the tricep extension."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:50:23.379Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 3
+Stage: up
+Angle: 167
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job on completing the 3rd rep, now focus on slowly lowering your arm to 90 degrees for the next movement."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:50:30.467Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 4
+Stage: down
+Angle: 43
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job on completing 4 reps, now focus on lowering your arms to 43 degrees for the next curl."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:50:36.408Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 5
+Stage: down
+Angle: 42
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, 5 reps completed. Next, focus on maintaining 42-degree angle for the next curl."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:50:42.058Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 6
+Stage: down
+Angle: 39
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, 6 reps completed. Next, focus on lowering the dumbbell to 39 degrees, control the descent."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:50:55.617Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 7
+Stage: down
+Angle: 37
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job completing 7 reps, now focus on lowering your arms to 37 degrees for the next rep."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:51:05.596Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 8
+Stage: down
+Angle: 27
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, 8 reps completed. Next, focus on maintaining 27-degree angle for tricep extension."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:51:49.977Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 8
+Stage: down
+Angle: 3
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, 8 reps completed. Next, focus on lowering the dumbbell to the starting position at a controlled pace."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-24T19:52:02.770Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 8
+Stage: down
+Angle: 4
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, 8 reps completed. Next, focus on proper elbow alignment for the tricep extension movement."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-25T11:23:58.283Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 1
+Stage: down
+Angle: 33
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job lowering your arm to 33 degrees, now smoothly transition into the next rep by keeping your core engaged."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-25T11:27:23.839Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 1
+Stage: up
+Angle: 165
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Excellent form, keep your elbow at 165 degrees, now slowly lower the weight back down for the next rep."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-25T11:28:47.863Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 2
+Stage: down
+Angle: 40
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, maintain a 40-degree angle and slowly lower the weight back down to the starting position."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-25T11:32:27.194Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 2
+Stage: up
+Angle: 168
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, keep your elbows close to your body as you lower the weight for the next rep."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-25T12:13:47.247Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 2
+Stage: up
+Angle: 158
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Good job, keep your back straight and engage your core for the next stage, descending slowly."
+
+-----------------------------
+
+-----------------------------
+TIME: 2025-11-25T12:13:58.030Z
+EVENT: rep_completed
+
+>> LLM INPUT:
+
+Exercise: Bicep Curl
+Reps: 3
+Stage: down
+Angle: 41
+Warning: none
+Event: rep_completed
+
+Rules:
+- If rep_completed → short praise + next movement tip
+- If form_warning → tiny correction
+- Max 15–20 words
+- Physiotherapy tone, one sentence only
+
+
+>> LLM OUTPUT:
+"Excellent form, well done. Next, focus on lowering the dumbbell to 41 degrees, control the descent."
+
+-----------------------------

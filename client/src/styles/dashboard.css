@@ -1,0 +1,951 @@
+/* Root layout */
+/* Root layout */
+.dash-root {
+  min-height: 100vh;
+  display: flex;
+  background: #f6f8fb !important;
+  color: #0f172a;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Sidebar (STICKY, LEFT) */
+.dash-sidebar {
+  width: 260px;
+  background: #ffffff;
+  border-right: 1px solid rgba(148, 163, 184, 0.25);
+  padding: 18px 18px 16px;
+
+  position: sticky;
+  top: 0;
+  height: 100vh;           /* full viewport height */
+  align-self: flex-start;  /* so sticky works */
+  display: flex;
+  flex-direction: column;
+}
+
+
+.dash-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.dash-logo-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 2px solid #22c55e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #22c55e;
+}
+
+.dash-logo-text {
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+
+.dash-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* base item */
+.dash-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #0f172a;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+
+
+.dash-nav-icon {
+  font-size: 1rem;
+}
+
+/* hover effect */
+.dash-nav-item:hover {
+  background: #f3f4ff;
+}
+
+/* ACTIVE */
+.dash-nav-item-active {
+  background: #eef3ff;
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.dash-nav-item-active .dash-nav-icon {
+  opacity: 0.9;
+}
+
+/* push bottom section to bottom */
+.dash-nav-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.dash-nav-plain {
+  border: none;
+  background: transparent;
+  text-align: left;
+}
+
+/* logout line + spacing */
+.dash-logout {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #b91c1c;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.dash-logout:hover {
+  background: #fee2e2;
+}
+
+/* user card at very bottom */
+.dash-user-card {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+.dash-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.dash-user-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.dash-user-email {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Main area */
+.dash-main {
+  flex: 1;
+  padding: 18px 24px 32px;
+}
+
+/* Top bar */
+.dash-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.dash-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.dash-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dash-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.dash-search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9rem;
+}
+
+.dash-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: #f1f5f9;
+  cursor: pointer;
+}
+
+.dash-avatar-small {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+/* Cards grid */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 2.3fr 1.1fr 1.1fr;
+  grid-auto-rows: min-content;
+  gap: 18px;
+}
+
+/* Base card */
+.dash-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  padding: 18px 20px;
+  box-shadow: 0 18px 45px rgba(148, 163, 184, 0.18);
+}
+
+/* Today's goal wider */
+.dash-card-wide {
+  grid-column: 1 / 3;
+}
+
+/* full width row */
+.dash-card-full {
+  grid-column: 1 / 4;
+}
+
+/* header row */
+.dash-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.dash-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-card-title-icon {
+  font-size: 1.2rem;
+}
+
+.dash-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.dash-card-sub {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* goal body */
+.dash-goal-body {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.dash-goal-image {
+  width: 160px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.dash-goal-text {
+  flex: 1;
+}
+
+.dash-goal-name {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.dash-goal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.dash-progress-label {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.dash-progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.dash-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #22c55e;
+}
+
+/* stat cards */
+.dash-card-stat {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dash-stat-icon {
+  font-size: 1.8rem;
+}
+
+.dash-stat-value {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.dash-stat-label {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* performance ring */
+.dash-card-perf {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dash-perf-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  border: 10px solid #e5e7eb;
+  border-top-color: #22c55e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-perf-inner {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.dash-perf-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dash-perf-title {
+  font-weight: 700;
+}
+
+.dash-perf-sub {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* table */
+.dash-table-wrapper {
+  margin-top: 8px;
+  overflow-x: auto;
+}
+
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.dash-table thead {
+  background: #f1f5f9;
+}
+
+.dash-table th,
+.dash-table td {
+  padding: 10px 8px;
+  text-align: left;
+}
+
+.dash-table tbody tr:nth-child(odd) {
+  background: #f9fafb;
+}
+.dash-table tbody tr:hover {
+  background: #e5f4ff;
+}
+
+.sidebar-logout-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #111;
+  text-align: left;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-logout-btn:hover {
+  background: #f3f4f6;
+  color: #e63946;
+}
+
+/* Live session specific tweaks */
+.live-topbar-no-nav {
+  justify-content: flex-start;
+}
+
+.live-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.live-main-card {
+  padding: 0; /* Webcam card already has its own padding */
+}
+
+.live-metrics-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.live-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.live-metric-box {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.live-metric-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.live-metric-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Instructions card */
+.live-instructions-card {
+  grid-column: 2 / 3;
+}
+
+.live-instructions-subtitle {
+  margin-top: 0.3rem;
+  margin-bottom: 0.7rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.live-instructions-list {
+  margin-left: 1.2rem;
+  color: #4b5563;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* === Live session layout === */
+.live-shell {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.live-left {
+  flex: 1.7;
+}
+
+.live-right {
+  flex: 1;
+}
+
+/* Big responsive video card */
+.live-video-wrapper {
+  position: relative;
+  width: 100%;
+  /* 16:9 ratio – same feel as reference design */
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.3);
+}
+
+/* Dark overlay BEFORE session starts */
+.live-video-wrapper--dim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  z-index: 2;   /* overlay level */
+}
+
+
+/* Webcam feed */
+.live-video-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Canvas for skeleton */
+.live-video-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Centered "Start Session" button */
+.live-start-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 14px 40px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 18px 40px rgba(22, 163, 74, 0.35);
+  z-index: 3; ✅  /* ABOVE dark overlay */
+}
+
+
+.live-start-btn:hover {
+  transform: translate(-50%, -52%);
+}
+
+/* End button below camera */
+.live-end-btn {
+  margin-top: 14px;
+  padding: 10px 26px;
+  border-radius: 999px;
+  border: none;
+  background: #ef4444;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* LIVE badge top-left */
+.live-badge {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(220, 38, 38, 0.9);
+  color: #fff;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.9;
+}
+
+.live-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #fff;
+}
+
+/* Blink / glow when active */
+.live-badge--active {
+  animation: livePulse 1s infinite;
+}
+
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Time label top-right */
+.live-time-label {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #e5e7eb;
+  font-size: 0.85rem;
+}
+
+/* Coach box on right */
+.live-coach-box {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: #eef2ff;
+  font-size: 0.9rem;
+}
+
+.sidebar-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 14px;   /* same as other links */
+  margin-left: 0;       /* remove shift */
+  
+  background: none;
+  border: none;
+  border-radius: 10px;
+  
+  font-size: 15px;
+  font-weight: 500;
+  color: #0f172a;
+
+  cursor: pointer;
+  text-align: left;
+}
+
+.sidebar-logout-btn:hover {
+  background: #f1f5f9;   /* same hover as others */
+}
+
+/* ============= SETTINGS PAGE ============= */
+
+.settings-wrapper {
+  margin-top: 1.5rem;
+  max-width: 960px;
+}
+
+.settings-intro {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+/* Cards */
+
+.settings-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px 28px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+  margin-bottom: 24px;
+}
+
+.settings-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #0f172a;
+}
+
+.settings-card-sub {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* Fields */
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.settings-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.settings-input {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 11px 13px;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.settings-input:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+  background: #ffffff;
+}
+
+/* Notifications row */
+
+.settings-notification-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.settings-notif-title {
+  font-weight: 600;
+  color: #111827;
+}
+
+.settings-notif-sub {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Toggle switch */
+
+.settings-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.settings-toggle input {
+  display: none;
+}
+
+.settings-toggle-track {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  position: relative;
+  transition: background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+}
+
+.settings-toggle-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+/* When checked */
+.settings-toggle input:checked + .settings-toggle-track {
+  background: #22c55e;
+}
+
+.settings-toggle input:checked + .settings-toggle-track .settings-toggle-thumb {
+  transform: translateX(18px);
+}
+
+/* ========== DARK MODE GLOBAL ========== */
+body.dark {
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+/* Cards */
+body.dark .page-card,
+body.dark .dash-card,
+body.dark .profile-card {
+  background: #111827;
+  color: #e5e7eb;
+  box-shadow: none;
+}
+
+/* Sidebar */
+body.dark .dash-sidebar {
+  background: #020617;
+  border-right: 1px solid #1f2933;
+}
+
+body.dark .dash-nav-item {
+  color: #9ca3af;
+}
+
+body.dark .dash-nav-item-active {
+  background: #1f2937;
+  color: #22c55e;
+}
+
+/* Inputs */
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #020617;
+  border-color: #1f2937;
+  color: white;
+}
+
+/* Header text */
+body.dark h1,
+body.dark h2,
+body.dark p {
+  color: #f9fafb;
+}
+
+/* Buttons */
+body.dark .btn-primary,
+body.dark .profile-btn-primary {
+  background: #22c55e;
+  color: black;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #e5e7eb;
+  border-radius: 99px;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+input:checked + .slider {
+  background: #22c55e;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+    
+/* Wide button under Recent Sessions */
+.dash-card-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dash-wide-btn {
+  width: 100%;
+  max-width: 420px;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  background: #22c55e;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.dash-wide-btn:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
+}
+
+/* Small metric cards on analytics page */
+.dash-card-stat-wide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.analytics-metric-title {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.analytics-metric-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #0f172a;
+}
