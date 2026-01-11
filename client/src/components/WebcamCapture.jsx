@@ -5,8 +5,7 @@ import { analyzeFrame, startSessionAPI, endSessionAPI } from "../services/api";
 import RepCounterUI from "./RepCounterUI";
 import ErrorMessage from "./ErrorMessage";
 
-const TARGET_FPS = 60;
-const TARGET_INTERVAL_MS = 300 / TARGET_FPS; // ~16.67ms
+const FRAME_INTERVAL_MS = 800; // send 1 frame every ~0.8s
 
 const WebcamCapture = ({ targetReps }) => {
   const webcamRef = useRef(null);
@@ -24,25 +23,20 @@ const WebcamCapture = ({ targetReps }) => {
   const [error, setError] = useState("");
 
   const isProcessingRef = useRef(false);
-  const lastCaptureRef = useRef(0);
-  const rafRef = useRef(null);
-
-  // for voice
-  const lastSpokenRef = useRef("");
-  const stageRef = useRef("down");
-  const repsRef = useRef(0);
-  const lastVoiceTimeRef = useRef(Date.now());
-
-  // to avoid ending session multiple times
+  const noPoseCountRef = useRef(0);
   const autoEndedRef = useRef(false);
 
-  // ----- TIMER -----
+  // voice
+  const lastSpokenRef = useRef("");
+  const lastVoiceTimeRef = useRef(Date.now());
+  const stageRef = useRef("down");
+  const repsRef = useRef(0);
+
+  // ---------- TIMER ----------
   useEffect(() => {
-    let timer = null;
-    if (sessionStarted) {
-      timer = setInterval(() => setSeconds((s) => s + 1), 1000);
-    }
-    return () => timer && clearInterval(timer);
+    if (!sessionStarted) return;
+    const timer = setInterval(() => setSeconds((s) => s + 1), 1000);
+    return () => clearInterval(timer);
   }, [sessionStarted]);
 
   const formatTime = () => {
@@ -51,25 +45,16 @@ const WebcamCapture = ({ targetReps }) => {
     return `${mins}:${secs}`;
   };
 
-  // ----- VOICE COACHING -----
-  const handleVoiceOutput = (data, effectiveReps) => {
+  // ---------- VOICE ----------
+  const handleVoiceOutput = (data, count) => {
     const now = Date.now();
     let message = null;
 
-    if (data.warning && data.warning.toLowerCase().includes("no_person")) {
+    if (data.warning?.toLowerCase().includes("no_person")) {
       if (now - lastVoiceTimeRef.current > 5000) {
-        message = "Move into the camera frame";
+        message = "Please move into the camera frame";
       }
     }
-
-    const count =
-      typeof effectiveReps === "number"
-        ? effectiveReps
-        : typeof data.reps === "number"
-        ? data.reps
-        : typeof data.count === "number"
-        ? data.count
-        : repsRef.current;
 
     if (data.event === "rep_completed" && count > repsRef.current) {
       message = `Rep ${count} completed`;
@@ -84,50 +69,48 @@ const WebcamCapture = ({ targetReps }) => {
     if (message && message !== lastSpokenRef.current) {
       lastSpokenRef.current = message;
       lastVoiceTimeRef.current = now;
-      const u = new SpeechSynthesisUtterance(message);
-      window.speechSynthesis.speak(u);
+      window.speechSynthesis.speak(new SpeechSynthesisUtterance(message));
     }
   };
 
-  // ----- END SESSION -----
+  // ---------- END SESSION ----------
   const handleEnd = async () => {
-    if (!sessionStarted && autoEndedRef.current) return; // already ended
+    if (autoEndedRef.current) return;
+    autoEndedRef.current = true;
 
     try {
       await endSessionAPI();
     } catch (e) {
-      console.warn("endSessionAPI failed (local only)", e);
+      console.warn("endSessionAPI failed:", e);
     }
 
     setSessionStarted(false);
   };
 
-  // ----- MAIN LOOP -----
+  // ---------- MAIN ANALYSIS LOOP ----------
   useEffect(() => {
-    const tick = async () => {
-      rafRef.current = requestAnimationFrame(tick);
-      if (!sessionStarted || !webcamRef.current) return;
+    if (!sessionStarted) return;
 
-      const now = performance.now();
-      if (now - lastCaptureRef.current < TARGET_INTERVAL_MS) return;
-      if (isProcessingRef.current) return;
+    const interval = setInterval(async () => {
+      if (!webcamRef.current || isProcessingRef.current) return;
 
-      const videoCanvas = webcamRef.current.getCanvas();
-      if (!videoCanvas) return;
+      const sourceCanvas = webcamRef.current.getCanvas();
+      if (!sourceCanvas) return;
 
-      let screenshot;
-      try {
-        screenshot = videoCanvas.toDataURL("image/webp", 0.8);
-      } catch {
-        screenshot = videoCanvas.toDataURL("image/jpeg", 0.8);
-      }
+      // resize & compress frame
+      const tempCanvas = document.createElement("canvas");
+      tempCanvas.width = 640;
+      tempCanvas.height = 480;
+      const ctx = tempCanvas.getContext("2d");
+      ctx.drawImage(sourceCanvas, 0, 0, 640, 480);
 
-      lastCaptureRef.current = now;
+      const imageBase64 = tempCanvas.toDataURL("image/jpeg", 0.6);
 
       try {
         isProcessingRef.current = true;
-        const data = await analyzeFrame(screenshot);
-        if (!data) throw new Error("No response from analyzeFrame");
+
+        const data = await analyzeFrame(imageBase64);
+        if (!data) return;
 
         const newReps =
           typeof data.reps === "number"
@@ -139,101 +122,73 @@ const WebcamCapture = ({ targetReps }) => {
         setReps(newReps);
         setStage(data.stage ?? "none");
         setAngle(data.angle ?? 0);
-
-        if (data.warning && data.warning.toLowerCase().includes("no_person")) {
-          setFeedback("No body detected");
-          setIsValid(false);
-        } else if (data.feedback) {
-          setFeedback(data.feedback);
-          setIsValid(true);
-        } else {
-          setFeedback("Tracking…");
-          setIsValid(true);
-        }
-
-        setLastGuidance(data.guidance ?? data.guidanceText ?? "");
+        setLastGuidance(data.guidance ?? "");
         setError("");
 
-        if (
-          Array.isArray(data.landmarks) &&
-          data.landmarks.length > 0 &&
-          canvasRef.current
-        ) {
+        if (data.warning?.toLowerCase().includes("no_person")) {
+          noPoseCountRef.current += 1;
+
+          if (noPoseCountRef.current > 2) {
+            setFeedback("Please stand fully in the camera frame");
+            setIsValid(false);
+          }
+          return;
+        }
+
+        noPoseCountRef.current = 0;
+        setFeedback(data.feedback ?? "Tracking…");
+        setIsValid(true);
+
+        if (Array.isArray(data.landmarks) && canvasRef.current) {
           drawSkeleton(data.landmarks, canvasRef.current);
         } else if (canvasRef.current) {
-          const ctx = canvasRef.current.getContext("2d");
-          ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+          const c = canvasRef.current.getContext("2d");
+          c.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
         }
 
-        // voice coaching (uses newReps)
         handleVoiceOutput(data, newReps);
 
-        // ✅ AUTO-STOP WHEN TARGET REPS REACHED
         const tReps = Number(targetReps);
-        if (
-          tReps > 0 &&
-          newReps >= tReps &&
-          !autoEndedRef.current
-        ) {
-          autoEndedRef.current = true;
-
-          // nice congrats message
-          try {
-            const msg = `Great job! You completed ${tReps} reps. Session saved.`;
-            const u = new SpeechSynthesisUtterance(msg);
-            window.speechSynthesis.speak(u);
-          } catch (e) {
-            console.warn("speech failed:", e);
-          }
-
-          await handleEnd(); // will call endSessionAPI and stop session
+        if (tReps > 0 && newReps >= tReps && !autoEndedRef.current) {
+          const msg = `Great job! You completed ${tReps} reps.`;
+          window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
+          await handleEnd();
         }
       } catch (err) {
-        console.error("Error analyzing frame:", err);
-        setError("Unable to contact server");
+        console.error("Analyze error:", err);
+        setError("Server busy, retrying…");
       } finally {
         isProcessingRef.current = false;
       }
-    };
+    }, FRAME_INTERVAL_MS);
 
-    rafRef.current = requestAnimationFrame(tick);
-    return () => rafRef.current && cancelAnimationFrame(rafRef.current);
-  }, [sessionStarted, targetReps]); // include targetReps
+    return () => clearInterval(interval);
+  }, [sessionStarted, targetReps]);
 
-
+  // ---------- START ----------
   const handleStart = async () => {
-  try {
-    await startSessionAPI(targetReps);
-  } catch (e) {
-    console.warn("startSessionAPI failed (local only)", e);
-  }
-  setSeconds(0);
-  setReps(0);
-  repsRef.current = 0;
-  setStage("down");
-  stageRef.current = "down";
-  autoEndedRef.current = false;
-  setSessionStarted(true);
-};
+    try {
+      await startSessionAPI(targetReps);
+    } catch (e) {
+      console.warn("startSessionAPI failed:", e);
+    }
 
+    setSeconds(0);
+    setReps(0);
+    repsRef.current = 0;
+    setStage("down");
+    stageRef.current = "down";
+    autoEndedRef.current = false;
+    setSessionStarted(true);
+  };
 
-  // ----- RENDER -----
+  // ---------- RENDER ----------
   return (
     <div className="live-shell">
-      {/* LEFT: video */}
       <div className="live-left">
-        <div
-          className={`live-video-wrapper ${
-            !sessionStarted ? "live-video-wrapper--dim" : ""
-          }`}
-        >
-          <div
-            className={`live-badge ${
-              sessionStarted ? "live-badge--active" : ""
-            }`}
-          >
-            <span className="live-badge-dot" />
-            LIVE
+        <div className={`live-video-wrapper ${!sessionStarted ? "dim" : ""}`}>
+          <div className={`live-badge ${sessionStarted ? "active" : ""}`}>
+            <span className="live-badge-dot" /> LIVE
           </div>
 
           <div className="live-time-label">Time: {formatTime()}</div>
@@ -241,19 +196,20 @@ const WebcamCapture = ({ targetReps }) => {
           <Webcam
             ref={webcamRef}
             audio={false}
-            mirrored={true}
-            screenshotFormat="image/webp"
+            mirrored
+            screenshotFormat="image/jpeg"
             videoConstraints={{
-              width: 1280,
-              height: 720,
-              frameRate: { ideal: 60, max: 60 },
+              width: 640,
+              height: 480,
+              frameRate: { ideal: 15, max: 15 },
             }}
             className="live-video-feed"
           />
+
           <canvas
             ref={canvasRef}
-            width={1280}
-            height={720}
+            width={640}
+            height={480}
             className="live-video-overlay"
           />
 
@@ -271,7 +227,6 @@ const WebcamCapture = ({ targetReps }) => {
         )}
       </div>
 
-      {/* RIGHT: Session Analysis */}
       <div className="live-right">
         <RepCounterUI
           reps={reps}
@@ -294,7 +249,7 @@ const WebcamCapture = ({ targetReps }) => {
   );
 };
 
-// ---------- Skeleton overlay drawing ----------
+// ---------- SKELETON ----------
 const drawSkeleton = (landmarks, canvas) => {
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -305,17 +260,13 @@ const drawSkeleton = (landmarks, canvas) => {
 
   ctx.fillStyle = "#00ff7b";
   landmarks.forEach((p) => {
-    const x = p.x * canvas.width;
-    const y = p.y * canvas.height;
     ctx.beginPath();
-    ctx.arc(x, y, 6, 0, 2 * Math.PI);
+    ctx.arc(p.x * canvas.width, p.y * canvas.height, 5, 0, 2 * Math.PI);
     ctx.fill();
   });
 
-  ctx.lineWidth = 4;
-  ctx.shadowColor = "#00ff7b";
-  ctx.shadowBlur = 8;
   ctx.strokeStyle = "#00ff7b";
+  ctx.lineWidth = 3;
 
   const connections = [
     [11, 13],
@@ -323,18 +274,22 @@ const drawSkeleton = (landmarks, canvas) => {
     [12, 14],
     [14, 16],
     [11, 12],
-    [23, 24],
     [11, 23],
     [12, 24],
+    [23, 24],
   ];
 
   connections.forEach(([a, b]) => {
-    const p1 = landmarks[a];
-    const p2 = landmarks[b];
-    if (p1 && p2) {
+    if (landmarks[a] && landmarks[b]) {
       ctx.beginPath();
-      ctx.moveTo(p1.x * canvas.width, p1.y * canvas.height);
-      ctx.lineTo(p2.x * canvas.width, p2.y * canvas.height);
+      ctx.moveTo(
+        landmarks[a].x * canvas.width,
+        landmarks[a].y * canvas.height
+      );
+      ctx.lineTo(
+        landmarks[b].x * canvas.width,
+        landmarks[b].y * canvas.height
+      );
       ctx.stroke();
     }
   });
